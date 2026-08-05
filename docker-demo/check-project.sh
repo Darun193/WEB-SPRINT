@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+project_name="${PROJECT_NAME:-docker-demo}"
 
 required_files=(
   "Dockerfile"
@@ -10,7 +11,8 @@ required_files=(
 
 missing=0
 
-echo "Проверяю проект: $(pwd)"
+echo "Проверяю проект: $project_name"
+echo "Путь к проекту: $(pwd)"
 echo
 
 for file in "${required_files[@]}"; do
