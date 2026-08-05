@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Проверка результатов распознавания</title>
+  </head>
+
+  <body>
+    <header>
+  <h1>Проверка результатов распознавания</h1>
+
+  <form>
+  <label for="search">Поиск по результатам</label>
+  <input
+    type="text"
+    id="search"
+    name="search"
+    placeholder="Введите текст"
+  />
+
+  <label for="status">Статус</label>
+  <select id="status" name="status">
+    <option value="all">Все</option>
+    <option value="new">Новый</option>
+    <option value="approved">Подтверждён</option>
+    <option value="rejected">Отклонён</option>
+  </select>
+
+  <button type="submit">Применить</button>
+</form>
+
+</header>
+
+<main>
+  <section aria-labelledby="results-title">
+    <h2 id="results-title">Результаты распознавания</h2>
+
+    <article>
+      <h3>Результат 1</h3>
+      <p><code>AB1234</code></p>
+      <p>Confidence: <strong>96%</strong></p>
+    </article>
+
+    <article>
+      <h3>Результат 2</h3>
+      <p><code>CD5678</code></p>
+      <p>Confidence: <strong>84%</strong></p>
+    </article>
+
+    <article>
+      <h3>Результат 3</h3>
+      <p><code>EF9012</code></p>
+      <p>Confidence: <strong>71%</strong></p>
+    </article>
+  </section>
+</main>
+
+<footer>
+  <p>Найдено результатов: <strong>3</strong></p>
+</footer>
+
+  </body>
+</html>
