@@ -1,0 +1,16 @@
+stages:
+  - build
+  - test
+
+build-site:
+  stage: build
+  image: node:24-alpine
+  script:
+    - npm ci
+    - npm run build
+
+check-html:
+  stage: test
+  image: alpine
+  script:
+    - test -f index.html
