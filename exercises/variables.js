@@ -24,12 +24,12 @@ console.log(typeof result);
 
 const courseName = "Web-sprint";
 const currentModule = 3;
-const isComleted = false;
+const isCompleted = false;
 let mentorFeedback;
 
 console.log(typeof courseName);
 console.log(typeof currentModule);
-console.log(typeof isComleted);
+console.log(typeof isCompleted);
 console.log(typeof mentorFeedback);
 
 // математические операторы 
@@ -41,7 +41,7 @@ const earnings = hourlyRate * workedHours;
 console.log(earnings);
 
 const people = 3;
-const amountPerPerson = earnings/people;
+const amountPerPerson = earnings / people;
 
 console.log(amountPerPerson);
 console.log(10%3);
