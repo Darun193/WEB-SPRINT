@@ -1,0 +1,38 @@
+export const recognitions = [
+  {
+    id: 1,
+    value: "MSKU 907032 1",
+    confidence: 0.97,
+    status: "correct"
+  },
+  {
+    id: 2,
+    value: "AB1234",
+    confidence: 0.84,
+    status: "unreviewed"
+  },
+  {
+    id: 3,
+    value: "CD5678",
+    confidence: 0.91,
+    status: "wrong"
+  },
+  {
+    id: 4,
+    value: "EF9012",
+    confidence: 0.71,
+    status: "correct"
+  },
+  {
+    id: 5,
+    value: "XYZ2048",
+    confidence: 0.88,
+    status: "unreviewed"
+  },
+  {
+    id: 6,
+    value: "QR7788",
+    confidence: 0.95,
+    status: "correct"
+  }
+];
