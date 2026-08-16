@@ -354,3 +354,227 @@ const isHardLesson2 = (lesson) => {
 // filter() использует стрелочную функцию isHardLesson2 как callback и оставляет только hard-уроки.
 const hardLessons2 = lessons.filter(isHardLesson2);
 console.log(hardLessons2);
+
+
+
+// 1. ПРОВЕРЯЕМ, ЯВЛЯЕТСЯ ЛИ УРОК ДЛИННЫМ
+// Функция получает один lesson
+// и возвращает true, если его длительность больше 60 минут.
+const isLongLesson = (lesson) => {
+    return lesson.duration > 60;
+};
+
+// filter проходит по массиву lessons
+// и оставляет только те уроки,
+// для которых isLongLesson вернул true.
+const longLessons = lessons.filter(isLongLesson);
+
+// Выводим найденные длинные уроки в консоль.
+console.log(longLessons);
+
+
+
+
+// 2. ПОЛУЧАЕМ ТОЛЬКО НАЗВАНИЯ УРОКОВ
+// Функция получает один lesson
+// и возвращает только его title.
+const getLessonName = (lesson) => {
+    return lesson.title;
+};
+
+// map проходит по каждому уроку
+// и создаёт новый массив из того,
+// что возвращает getLessonName.
+// В итоге получаем массив названий уроков.
+const names = lessons.map(getLessonName);
+
+// Выводим массив названий в консоль.
+console.log(names);
+
+
+
+
+// 3. ПРОВЕРЯЕМ, ЕСТЬ ЛИ ХОТЯ БЫ ОДИН НЕЗАВЕРШЁННЫЙ УРОК
+// Функция возвращает true,
+// если completed у урока равен false.
+const isUncompletedLesson = (lesson) => {
+    return lesson.completed === false;
+};
+
+// some проверяет:
+// есть ли в массиве ХОТЯ БЫ ОДИН элемент,
+// для которого функция возвращает true.
+//
+// Если хотя бы один незавершённый урок есть,
+// результат будет true.
+const hasUncompletedLessons = lessons.some(isUncompletedLesson);
+
+// Выводим true или false.
+console.log(hasUncompletedLessons);
+
+
+
+
+// 4. ПРОВЕРЯЕМ, ВСЕ ЛИ УРОКИ КОРОЧЕ 100 МИНУТ
+// Функция возвращает true,
+// если длительность одного урока меньше 100 минут.
+const isShortLesson = (lesson) => {
+    return lesson.duration < 100;
+};
+
+// every проверяет:
+// подходят ли ВСЕ элементы массива под условие.
+//
+// Если каждый урок короче 100 минут,
+// результат будет true.
+//
+// Если хотя бы один урок длится 100 минут или больше,
+// результат будет false.
+const allLessonsAreShort = lessons.every(isShortLesson);
+
+// Выводим результат проверки.
+console.log(allLessonsAreShort);
+
+
+
+
+// 5. КОПИРОВАНИЕ ОБЪЕКТА ЧЕРЕЗ ОБЫЧНОЕ ПРИСВАИВАНИЕ
+const student = {
+    name: "Darya",
+    level: "beginner",
+    progress: 30
+};
+
+// Здесь мы НЕ создаём новый независимый объект.
+//
+// secondStudent и student теперь
+// указывают на один и тот же объект в памяти.
+const secondStudent = student;
+
+// Меняем progress через secondStudent.
+secondStudent.progress = 50;
+
+// Но так как student и secondStudent
+// связаны с одним объектом,
+// progress изменится у обоих.
+console.log(student);
+console.log(secondStudent);
+
+
+
+
+// 6. ПОВЕРХНОСТНАЯ КОПИЯ ОБЪЕКТА ЧЕРЕЗ SPREAD
+const thirdStudent = {
+    ...student
+};
+
+// ...student копирует свойства student
+// в НОВЫЙ объект.
+//
+// Теперь thirdStudent — отдельный объект.
+
+// Меняем progress только у копии.
+thirdStudent.progress = 80;
+
+// student не изменится,
+// потому что progress — простое значение,
+// а сам объект thirdStudent уже независимый.
+console.log(student);
+console.log(thirdStudent);
+
+
+
+
+// 7. ПОВЕРХНОСТНОЕ КОПИРОВАНИЕ ВЛОЖЕННОГО ОБЪЕКТА
+const studentWithSettings = {
+    name: "Darya",
+    level: "beginner",
+
+    // settings — это объект внутри другого объекта.
+    settings: {
+        theme: "light",
+        notifications: true
+    }
+};
+
+
+// Создаём новый внешний объект.
+const copiedStudent = {
+    ...studentWithSettings
+};
+
+// Но spread здесь скопировал только верхний уровень.
+//
+// copiedStudent — новый объект,
+// но copiedStudent.settings и studentWithSettings.settings
+// всё ещё указывают на один и тот же вложенный объект.
+
+// Поэтому изменение theme через copiedStudent...
+copiedStudent.settings.theme = "dark";
+
+// ...изменит settings и у исходного объекта.
+console.log(studentWithSettings);
+console.log(copiedStudent);
+
+
+
+
+// 8. СОЗДАЁМ НЕЗАВИСИМУЮ КОПИЮ ВЛОЖЕННОГО ОБЪЕКТА
+const independentStudent = {
+
+    // Сначала копируем внешний объект.
+    ...studentWithSettings,
+
+    // Потом отдельно создаём новую копию settings.
+    settings: {
+        ...studentWithSettings.settings
+    }
+};
+
+// Теперь settings тоже отдельный объект.
+//
+// Поэтому меняем theme только у independentStudent.
+independentStudent.settings.theme = "blue";
+
+// Исходный studentWithSettings.settings
+// больше не зависит от этой копии.
+console.log(studentWithSettings);
+console.log(independentStudent);
+
+
+
+
+// 9. ЕЩЁ ОДИН ПРИМЕР С ВЛОЖЕННЫМ ОБЪЕКТОМ
+const course = {
+    title: "JS",
+    completed: true,
+
+    // meta — вложенный объект.
+    meta: {
+        level: 5,
+        hours: 25
+    }
+};
+
+
+// Создаём независимую копию course.
+//
+// ...course копирует внешний объект,
+// а ...course.meta отдельно копирует вложенный meta.
+const courseCopy = {
+    ...course,
+    meta: {
+        ...course.meta
+    }
+};
+
+// Меняем hours только внутри копии.
+courseCopy.meta.hours = 50;
+
+// У исходного course останется hours: 25.
+//
+// У courseCopy будет hours: 50.
+console.log(course);
+console.log(courseCopy);
+
+
