@@ -126,3 +126,12 @@ console.log(sortedRecognitions);
 
 console.log("Исходный массив:");
 console.log(recognitions);
+
+
+async function loadRecognitions() {
+  const response = await fetch("recognitions.json");
+
+  console.log(response);
+}
+
+loadRecognitions();
